@@ -1,0 +1,69 @@
+version: 0.1.0
+name: multichain-memo-address-validator
+category: security
+displayName: AllSwap 46-Chain Address & Memo Validator
+createdAt: "2026-03-31T00:00:00Z"
+description: Zero-dependency 46-chain crypto address format, checksum & destination tag/memo validation policy and benchmark suite for cross-chain swap routing.
+license: MIT
+homeURL: https://allswap.io/tools/address-validator
+keywords:
+  - security
+  - blockchain
+  - web3
+  - cross-chain
+  - address-validation
+  - opa
+links:
+  - name: AllSwap 46-Chain Address Validator
+    url: https://allswap.io/tools/address-validator
+  - name: AllSwap Developer Documentation
+    url: https://allswap.io/docs
+  - name: AllSwap Cross-Chain Swap Aggregator
+    url: https://allswap.io/
+maintainers:
+  - name: AllSwap Team
+    email: yaobawu66@gmail.com
+provider:
+  name: AllSwap
+readme: |
+  # AllSwap 46-Chain Address Format, Checksum & Memo Validation Policy & Benchmark
+
+  `multichain-memo-address-validator` provides a deterministic, zero-dependency policy and verification specification for validating cryptocurrency wallet addresses, cryptographic checksums, and mandatory destination tags/memos across **46+ heterogeneous Layer-1 and Layer-2 blockchains**. It is designed for Open Policy Agent (OPA) admission controllers, Kubernetes treasury guardrails, Model Context Protocol (MCP) servers, and automated cross-chain execution pipelines connected to the [AllSwap Non-Custodial Cross-Chain Swap Aggregator](https://allswap.io/).
+
+  ---
+
+  ## 1. Why Pre-Flight Address & Memo Policy Enforcement Is Critical in Automated Web3 Workflows
+
+  Unlike traditional single-network applications, multi-chain payment gateways, treasury automation workflows, and autonomous DeFi trading agents must construct and sign transactions across radically different cryptographic address standards:
+
+  1. **EVM Networks (Ethereum, Arbitrum, Optimism, Base, Polygon, BNB Chain, Avalanche C-Chain)**: Utilize 20-byte hexadecimal strings (`0x...`) secured by EIP-55 mixed-case Keccak-256 checksums.
+  2. **Bitcoin & UTXO Chains (Bitcoin, Litecoin, Dogecoin, Bitcoin Cash)**: Support legacy Base58Check (`1...`, `3...`), SegWit Bech32 (`bc1q...`), and Taproot Bech32m (`bc1p...`) polynomial checksum encodings.
+  3. **Cosmos SDK & IBC App-Chains (Cosmos Hub, Osmosis, Celestia, Injective, Sei, Noble)**: Use Bech32 human-readable prefixes (`cosmos1...`, `osmo1...`, `celestia1...`) and require explicit memo routing fields for centralized exchange and IBC transfer settlements.
+  4. **Account-Tag & High-Throughput Non-EVM L1s (Solana, XRP Ledger, Stellar, TON, Sui, Aptos, Tron, Near)**: Use Ed25519 Base58, classic r-addresses, StrKey Ed25519, or raw 32-byte hex formats where omitting a numeric Destination Tag or Text Memo causes permanent fund loss on custodial deposit endpoints.
+
+  Interactive multi-chain test vectors and live browser-based verification tools are available on the [AllSwap 46-Chain Address Validator](https://allswap.io/tools/address-validator).
+
+  ---
+
+  ## 2. Policy Guardrails & Integration with AllSwap Partner API v2
+
+  Before requesting an executable cross-chain swap or bridge quote from the [AllSwap Developer Documentation](https://allswap.io/docs), policy engines and autonomous agents enforce three deterministic invariants:
+
+  - **Cryptographic Format & Prefix Verification**: Confirms that the destination wallet address matches the canonical encoding and byte length of the target blockchain ID.
+  - **Checksum Integrity Verification**: Evaluates EIP-55 mixed-case hashing, Base58Check double-SHA256 digests, or Bech32/Bech32m polymod syndromes to reject single-character corruptions before gas is spent.
+  - **Mandatory Destination Tag / Memo Enforcement**: Inspects settlement payloads for `XRP`, `XLM`, `ATOM`, `EOS`, `TON`, and `HBAR` to guarantee that required memo strings or 32-bit unsigned destination tags are properly populated.
+
+  ---
+
+  ## 3. Core Capabilities & Supported Ecosystem Links
+
+  | Feature | Specification |
+  | :--- | :--- |
+  | **Supported Chains** | 46+ L1/L2 networks (EVM, Bitcoin/UTXO, Solana, Cosmos/IBC, Move, XRP, Stellar, TON, Tron) |
+  | **Checksum Engines** | EIP-55 Keccak-256, Base58Check SHA-256d, Bech32 (BIP-173), Bech32m (BIP-350) |
+  | **Memo & Tag Guard** | Enforces Destination Tag & Memo rules for XRP, XLM, ATOM, OSMO, TON, EOS, HBAR |
+  | **License** | MIT Open Source |
+
+  - **Interactive 46-Chain Address & Memo Validator**: [https://allswap.io/tools/address-validator](https://allswap.io/tools/address-validator)
+  - **AllSwap Developer Documentation & API Reference**: [https://allswap.io/docs](https://allswap.io/docs)
+  - **AllSwap Non-Custodial Cross-Chain Swap Aggregator**: [https://allswap.io/](https://allswap.io/)
