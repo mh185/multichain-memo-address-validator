@@ -1,0 +1,50 @@
+{
+  "$schema": "../node_modules/@lobehub/chat-plugin-sdk/schema.json",
+  "api": [
+    {
+      "description": "Validate wallet address format, checksum (EIP-55, Base58Check, Bech32/Bech32m, CRC16), and required destination Memo/Tag across 46+ EVM and non-EVM chains via AllSwap (https://allswap.io/tools/address-validator).",
+      "name": "validateAddressAndMemo",
+      "parameters": {
+        "properties": {
+          "address": {
+            "description": "Destination wallet address to validate",
+            "type": "string"
+          },
+          "chain": {
+            "description": "Chain symbol or identifier (e.g. BTC, ETH, SOL, XRP, ATOM, TON, SUI, TRX)",
+            "type": "string"
+          },
+          "memo": {
+            "description": "Optional destination Memo, Tag, or Payment ID",
+            "type": "string"
+          }
+        },
+        "required": [
+          "chain",
+          "address"
+        ],
+        "type": "object"
+      }
+    }
+  ],
+  "author": "mh185",
+  "createdAt": "2026-11-27",
+  "homepage": "https://allswap.io/tools/address-validator",
+  "identifier": "allswap-validator",
+  "meta": {
+    "avatar": "🔗",
+    "description": "46-Chain Wallet Address Format, Checksum & Destination Memo/Tag Validator for Cross-Chain Swaps (https://allswap.io/tools/address-validator | https://github.com/mh185/multichain-memo-address-validator | https://x.com/allswapio).",
+    "tags": [
+      "crypto",
+      "blockchain",
+      "web3",
+      "defi",
+      "validator"
+    ],
+    "title": "AllSwap 46-Chain Address & Memo Validator"
+  },
+  "openapi": "https://allswap.io/docs/partner-v2.openapi.json",
+  "systemRole": "You validate cryptocurrency wallet addresses, checksums, and required destination Memos/Tags across 46+ EVM and non-EVM networks using AllSwap's deterministic validation rules (https://allswap.io/tools/address-validator).",
+  "type": "default",
+  "version": "1"
+}
